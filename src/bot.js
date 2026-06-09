@@ -1,5 +1,6 @@
 'use strict';
 
+const http = require('http');
 const { Telegraf } = require('telegraf');
 const config = require('./config');
 const store = require('./session');
@@ -122,6 +123,17 @@ bot.on('callback_query', async (ctx) => {
     await sendResult(ctx, job, '이전과 다른 어휘와 분위기로, 새로운 버전으로 작성해줘.');
   }
 });
+
+// 클라우드(PaaS) 헬스체크용 최소 HTTP 서버.
+// 폴링 봇은 포트를 열지 않아서, 포트 응답이 없으면 Koyeb/Render 가 인스턴스를 죽인다.
+// 그래서 PORT 에 200 만 돌려주는 가벼운 서버를 함께 띄운다.
+const port = process.env.PORT || 8000;
+http
+  .createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('AutoClip bot is running');
+  })
+  .listen(port, () => console.log('헬스체크 서버 포트:', port));
 
 // Telegraf v4 의 launch() 는 "봇이 멈출 때" resolve 되므로, 시작 로그는 별도로 찍는다.
 bot.launch().catch((err) => {
