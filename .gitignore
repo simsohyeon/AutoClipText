@@ -1,0 +1,6 @@
+node_modules/
+.env
+# data/ 안의 임시파일은 무시하되, 스타일 샘플은 배포에 포함
+data/*
+!data/style-samples.txt
+*.log

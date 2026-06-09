@@ -1,0 +1,15 @@
+{
+  "name": "autoblog",
+  "version": "0.2.0",
+  "description": "텔레그램으로 사진+장소를 보내면 Gemini가 네이버 클립용 글+해시태그를 만들어 복사하기 쉽게 돌려주는 봇 (반자동)",
+  "main": "src/bot.js",
+  "scripts": {
+    "start": "node src/bot.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@google/genai": "^1.0.0",
+    "dotenv": "^16.4.5",
+    "telegraf": "^4.16.3"
+  }
+}
