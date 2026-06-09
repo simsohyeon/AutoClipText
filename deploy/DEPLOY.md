@@ -63,8 +63,8 @@ git push -u origin main
 서버에서:
 ```bash
 sudo apt-get update && sudo apt-get install -y git
-git clone https://github.com/<본인>/<repo>.git autoblog
-cd autoblog
+git clone https://github.com/simsohyeon/AutoClipText.git autoclip
+cd autoclip
 ```
 
 ### 방법 B — 파일 직접 전송 (git 없이)
