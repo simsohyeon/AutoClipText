@@ -139,7 +139,10 @@ async function generateContent({ placeName, note, images = [], extraInstruction 
         systemInstruction: buildSystemPrompt(),
         responseMimeType: 'application/json',
         responseSchema: RESPONSE_SCHEMA,
-        maxOutputTokens: 1500,
+        // gemini-2.5-flash 는 '생각(thinking)' 토큰이 maxOutputTokens 를 같이 먹어서
+        // 본문이 중간에 잘려 JSON 이 깨졌다(밥까지...). 생각을 끄고 토큰 여유를 준다.
+        thinkingConfig: { thinkingBudget: 0 },
+        maxOutputTokens: 2048,
         temperature: 0.9,
       },
     })
